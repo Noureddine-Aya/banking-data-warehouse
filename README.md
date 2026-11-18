@@ -96,3 +96,40 @@ Les fichiers utilisés sont disponibles dans le [dépôt source de dnoeth](https
 Selon la documentation de cette version, les dates ont été décalées de 20 ans, les montants ont été divisés par 10 et les descriptions tchèques ont été remplacées par des abréviations anglaises. Les montants ne constituent donc pas une conversion officielle en euros ou en dollars.
 
 Les huit fichiers sources sont au format TSV. Ils doivent être téléchargés séparément pour préparer les tables `staging`.
+
+## Vérification et import des fichiers TSV
+
+Télécharger et extraire les données depuis le dépôt source indiqué
+dans la section « Origine des données ».
+
+### Vérifier les fichiers
+
+Depuis la racine du projet, remplacer le chemin ci-dessous par
+celui du dossier contenant les fichiers téléchargés.
+
+```powershell
+python src/import_staging.py --data-dir "C:\chemin\vers\donnees"
+```
+
+Cette commande vérifie le nombre de colonnes et compte les lignes
+et les champs manquants, sans connexion à PostgreSQL.
+
+### Importer dans la base de test
+
+Prérequis : créer `banking_dw_test`, y exécuter `sql/schema.sql`
+et renseigner les identifiants PostgreSQL dans `.env`.
+
+Les huit tables `staging` doivent être vides.
+
+```powershell
+python src/import_staging.py --data-dir "C:\chemin\vers\donnees" --env-file .env --apply-test
+```
+
+L’import utilise une seule transaction. Il refuse les tables staging
+déjà remplies et annule les insertions si une erreur survient.
+
+Les champs vides, composés uniquement d’espaces ou contenant `?`
+sont convertis en NULL.
+
+La vérification des fichiers a été exécutée avec succès.
+Le mode d’import en base reste à tester.
