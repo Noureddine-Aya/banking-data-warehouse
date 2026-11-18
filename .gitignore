@@ -1,0 +1,22 @@
+# Environnements Python
+.venv/
+venv/
+
+# Configuration locale et secrets
+.env
+.env.*
+!.env.example
+
+# Cache Python et tests
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Sauvegardes de bases
+*.backup
+*.dump
+
+# Journaux
+*.log
