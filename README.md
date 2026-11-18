@@ -86,3 +86,13 @@ et le dashboard Power BI restent à compléter.
 
 ## Structure SQL
 Le fichier `sql/schema.sql` contient la structure des 16 tables du projet.
+
+## Origine des données
+
+Ce projet utilise la version adaptée pour Teradata du jeu de données bancaire tchèque du PKDD’99 Discovery Challenge, préparé initialement par Petr Berka et Marta Sochorova.
+
+Les fichiers utilisés sont disponibles dans le [dépôt source de dnoeth](https://github.com/dnoeth/1999_Czech_financial_dataset_Teradata).
+
+Selon la documentation de cette version, les dates ont été décalées de 20 ans, les montants ont été divisés par 10 et les descriptions tchèques ont été remplacées par des abréviations anglaises. Les montants ne constituent donc pas une conversion officielle en euros ou en dollars.
+
+Les huit fichiers sources sont au format TSV. Ils doivent être téléchargés séparément pour préparer les tables `staging`.
