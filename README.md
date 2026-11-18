@@ -133,3 +133,17 @@ sont convertis en NULL.
 
 La vérification des fichiers a été exécutée avec succès.
 Le mode d’import en base reste à tester.
+
+
+## Validation du pipeline complet
+
+Le test `src/test_import_pipeline.py` a vérifié l’import des huit
+fichiers TSV, le chargement ETL et la conformité des données
+projetées vers les huit tables du DW.
+
+Le test annule toutes ses écritures à la fin.
+
+La normalisation des champs manquants a entraîné temporairement
+1 379 mises à jour d’ordres de paiement et 553 304 mises à jour
+de transactions, en accord avec les comptages des k_symbol
+vides ou contenant un marqueur d’absence.
